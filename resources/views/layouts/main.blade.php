@@ -24,7 +24,17 @@
          <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 
-    @yield('content')
+    <main> 
+      <div class="container-fluid"> 
+        <div class="row">
+          @if(session('msg'))   
+            <p class="msg"></p> {{session('msg')}} </p>
+          @endif
+          @yield('content')
+        </div>
+      </div>
+
+    </main>
     <footer> Treinamento de Laravel com Matheus Batisti - Hora de Codar</footer>
 
 </html>

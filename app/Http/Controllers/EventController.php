@@ -35,6 +35,26 @@ public function store(Request $request) {
   $event->description = $request->description;
   $event->private = $request->private;
 
+// Image Upload
+if ($request->hasFile('image') && $request->file('image')->isvalid()) {
+  
+    $requestImage = $request -> image;
+
+    
+    $extension = $requestImage->getClientOriginalExtension();
+    $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
+
+   
+
+    $requestImage ->  move(public_path('img/events'),$imageName);
+
+    $event->image = $imageName;
+
+}
+
+
+
+
   $event-> save();
 
   return redirect('/');
