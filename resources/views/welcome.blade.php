@@ -18,6 +18,7 @@
     <p> Veja os eventos dos próximos dias</p>
  </div>
    <div id="cards-container" class="row"> 
+   <a href="/events/create" class="btn btn-primary"> Criar Evento</a>
       @foreach ($events as $event )
        <div class="card col-md-3">
             <img src="/img/events/{{$event->image}}" alt={{$event->title}}>
@@ -31,7 +32,7 @@
               <p class="card-participants">
                    x participantes
               </p>
-              <a href="/" class="btn btn-primary"> Saber Mais</a>
+              <a href="/events/{{$event->id}}" class="btn btn-primary"> Saber Mais</a>
             </div>
             
        </div>

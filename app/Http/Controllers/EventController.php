@@ -39,12 +39,9 @@ public function store(Request $request) {
 if ($request->hasFile('image') && $request->file('image')->isvalid()) {
   
     $requestImage = $request -> image;
-
     
     $extension = $requestImage->getClientOriginalExtension();
     $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
-
-   
 
     $requestImage ->  move(public_path('img/events'),$imageName);
 
@@ -52,15 +49,17 @@ if ($request->hasFile('image') && $request->file('image')->isvalid()) {
 
 }
 
-
-
-
   $event-> save();
 
   return redirect('/');
   
 }
 
+public function show($id) {
+  $event = Event::findOrFail($id);
+
+  return view('events.show',['event'->$event]);
+}
 
 
 }
